@@ -16141,7 +16141,10 @@
                           (o = { question: t, history: n }),
                           (e.prev = 1),
                           (e.next = 4),
-                          Fe.post("http://localhost:9000/query", o)
+                          Fe.post(
+                            "https://client-chatbot-be-production.up.railway.app/query",
+                            o
+                          )
                         );
                       case 4:
                         return (a = e.sent), (e.next = 7), a.data;
@@ -16184,14 +16187,20 @@
                       }
                       return (
                         (e.next = 3),
-                        Fe.get("http://localhost:9000/chat", {
-                          params: { nextNode: t },
-                        })
+                        Fe.get(
+                          "https://client-chatbot-be-production.up.railway.app/chat",
+                          { params: { nextNode: t } }
+                        )
                       );
                     case 3:
                       return (n = e.sent), e.abrupt("return", n.data);
                     case 7:
-                      return (e.next = 9), Fe.get("http://localhost:9000/chat");
+                      return (
+                        (e.next = 9),
+                        Fe.get(
+                          "https://client-chatbot-be-production.up.railway.app/chat"
+                        )
+                      );
                     case 9:
                       return (r = e.sent), e.abrupt("return", r.data);
                     case 11:
@@ -16215,7 +16224,10 @@
                     case 0:
                       return (
                         (e.next = 2),
-                        Fe.post("http://localhost:9000/chat/save", De({}, t))
+                        Fe.post(
+                          "https://client-chatbot-be-production.up.railway.app/chat/save",
+                          De({}, t)
+                        )
                       );
                     case 2:
                       return (n = e.sent), e.abrupt("return", n.data);
@@ -24395,7 +24407,7 @@
                                 ),
                                 (e.prev = 14),
                                 (f = new EventSource(
-                                  "http://localhost:9000/query/stream"
+                                  "https://client-chatbot-be-production.up.railway.app/query/stream"
                                 )).addEventListener("message", function (e) {
                                   var n = JSON.parse(e.data);
                                   w(!1),
@@ -25869,7 +25881,7 @@
                                   ),
                                   (e.prev = 5),
                                   (l = new EventSource(
-                                    "http://localhost:9000/query/stream"
+                                    "https://client-chatbot-be-production.up.railway.app/query/stream"
                                   )).addEventListener("message", function (e) {
                                     var t = JSON.parse(e.data);
                                     u(!1), f((p += t));
