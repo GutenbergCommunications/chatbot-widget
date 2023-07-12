@@ -24120,7 +24120,10 @@
                                 ),
                                 (e.prev = 14),
                                 (f = new EventSource(
-                                  "http://localhost:9000/query/stream"
+                                  "".concat(
+                                    "https://client-chatbot.up.railway.app",
+                                    "/query/stream"
+                                  )
                                 )).addEventListener("message", function (e) {
                                   var n = JSON.parse(e.data);
                                   w(!1),
