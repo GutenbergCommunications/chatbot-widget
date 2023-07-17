@@ -16144,7 +16144,7 @@
             });
           };
         }
-        var He = "http://localhost:9000";
+        var He = "https://client-chatbot.up.railway.app";
         function qe(e, t, n) {
           return Ke.apply(this, arguments);
         }
@@ -25684,7 +25684,7 @@
                                 (e.prev = 6),
                                 (s = new EventSource(
                                   "".concat(
-                                    "http://localhost:9000",
+                                    "https://client-chatbot.up.railway.app",
                                     "/query/stream"
                                   )
                                 )).addEventListener("message", function (e) {
