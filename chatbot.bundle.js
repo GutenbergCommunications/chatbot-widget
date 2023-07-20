@@ -16144,7 +16144,7 @@
             });
           };
         }
-        var He = "https://client-chatbot.up.railway.app";
+        var He = "http://localhost:9000";
         function qe(e, t, n) {
           return Ke.apply(this, arguments);
         }
@@ -16283,7 +16283,11 @@
                     case 0:
                       return (
                         (e.next = 2),
-                        Fe.get("".concat(He, "/chat/get?id=").concat(t))
+                        Fe.get(
+                          ""
+                            .concat(He, "/chat/get?id=")
+                            .concat(t, "&type=qnaBot")
+                        )
                       );
                     case 2:
                       return (n = e.sent), e.abrupt("return", n.data);
@@ -25684,7 +25688,7 @@
                                 (e.prev = 6),
                                 (s = new EventSource(
                                   "".concat(
-                                    "https://client-chatbot.up.railway.app",
+                                    "http://localhost:9000",
                                     "/query/stream"
                                   )
                                 )).addEventListener("message", function (e) {
@@ -25722,6 +25726,7 @@
                                     isEngaged: !0,
                                     isAbondoned: !(n.length >= 3),
                                     conversationId: t,
+                                    endAt: new Date(),
                                     chat: [].concat(yl(n), [
                                       {
                                         type: "botMessage",
@@ -25788,7 +25793,14 @@
                               (t = sessionStorage.getItem("conversationId")),
                               (e.next = 3),
                               Xe(
-                                ml({ isConverted: !0, conversationId: t }, b),
+                                ml(
+                                  {
+                                    isConverted: !0,
+                                    conversationId: t,
+                                    endAt: new Date(),
+                                  },
+                                  b
+                                ),
                                 i.type,
                                 i.chatbotId
                               )
@@ -25806,230 +25818,240 @@
                   return e.apply(this, arguments);
                 };
               })();
-            return React.createElement(
-              Zt,
-              {
-                color: "#fff",
-                borderRadius: "50px",
-                padding: "0 30px",
-                sx: { height: "510px", overflow: "scroll" },
-              },
-              l
-                ? React.createElement(
-                    Zt,
-                    { textAlign: "center" },
-                    React.createElement(
+            return (
+              console.log(n),
+              console.log(l),
+              console.log(n.length),
+              console.log(!(n.length > 1)),
+              React.createElement(
+                Zt,
+                {
+                  color: "#fff",
+                  borderRadius: "50px",
+                  padding: "0 30px",
+                  sx: { height: "510px", overflow: "scroll" },
+                },
+                !l || n.length > 1
+                  ? React.createElement(
                       Zt,
                       null,
-                      a.isName &&
-                        React.createElement(Ni, {
-                          style: {
-                            background: "#1f2029",
-                            border: "1px solid rgba(255, 191, 15, 0.25)",
-                          },
-                          placeholder: "Name",
-                          sx: { mt: 2 },
-                          onChange: function (e) {
-                            return R(e.target.value, "name");
-                          },
-                        })
-                    ),
-                    React.createElement(
-                      Zt,
-                      null,
-                      a.isEmail &&
-                        React.createElement(Ni, {
-                          style: {
-                            background: "#1f2029",
-                            border: "1px solid rgba(255, 191, 15, 0.25)",
-                          },
-                          placeholder: "Email",
-                          sx: { mt: 2 },
-                          onChange: function (e) {
-                            return R(e.target.value, "email");
-                          },
-                        })
-                    ),
-                    React.createElement(
-                      Zt,
-                      null,
-                      a.isPhone &&
-                        React.createElement(Ni, {
-                          style: {
-                            background: "#1f2029",
-                            border: "1px solid rgba(255, 191, 15, 0.25)",
-                          },
-                          placeholder: "Phone",
-                          sx: { mt: 2 },
-                          onChange: function (e) {
-                            return R(e.target.value, "phone");
-                          },
-                        })
-                    ),
-                    React.createElement(
-                      Zt,
-                      null,
-                      React.createElement(
-                        Gi,
-                        {
-                          sx: { mt: 2 },
-                          variant: "contained",
-                          onClick: function () {
-                            return P();
-                          },
-                        },
-                        "Save"
-                      )
-                    )
-                  )
-                : React.createElement(
-                    Zt,
-                    null,
-                    null == n
-                      ? void 0
-                      : n.map(function (e) {
-                          return "botMessage" === e.type
-                            ? React.createElement(
-                                Zt,
-                                {
-                                  display: "flex",
-                                  alignItems: "center",
-                                  maxWidth: o ? "80%" : "100%",
-                                },
-                                React.createElement(
+                      null == n
+                        ? void 0
+                        : n.map(function (e) {
+                            return "botMessage" === e.type
+                              ? React.createElement(
                                   Zt,
-                                  null,
-                                  React.createElement("img", {
-                                    src: null != a && a.avatar ? a.avatar : Qi,
-                                    style: {
-                                      height: "40px",
-                                      width: "40px",
-                                      marginRight: "14px",
-                                    },
-                                    alt: "logo",
-                                  })
-                                ),
-                                React.createElement(
+                                  {
+                                    display: "flex",
+                                    alignItems: "center",
+                                    maxWidth: o ? "80%" : "100%",
+                                  },
+                                  React.createElement(
+                                    Zt,
+                                    null,
+                                    React.createElement("img", {
+                                      src:
+                                        null != a && a.avatar ? a.avatar : Qi,
+                                      style: {
+                                        height: "40px",
+                                        width: "40px",
+                                        marginRight: "14px",
+                                      },
+                                      alt: "logo",
+                                    })
+                                  ),
+                                  React.createElement(
+                                    Zt,
+                                    { sx: k.botMessageStyle },
+                                    React.createElement(
+                                      Cr,
+                                      {
+                                        color: "#fff",
+                                        fontSize: o ? "18px" : "14px",
+                                      },
+                                      e.message
+                                    )
+                                  )
+                                )
+                              : React.createElement(
                                   Zt,
-                                  { sx: k.botMessageStyle },
+                                  { sx: k.userMessageStyle },
                                   React.createElement(
                                     Cr,
                                     {
-                                      color: "#fff",
+                                      sx: k.userMessageTextStyle,
                                       fontSize: o ? "18px" : "14px",
                                     },
                                     e.message
                                   )
-                                )
+                                );
+                          }),
+                      g.length > 0 && "botMessage" !== n.at(-1).type
+                        ? React.createElement(
+                            Zt,
+                            {
+                              display: "flex",
+                              alignItems: "center",
+                              maxWidth: o ? "80%" : "100%",
+                            },
+                            React.createElement(
+                              Zt,
+                              null,
+                              React.createElement("img", {
+                                src: null != a && a.avatar ? a.avatar : Qi,
+                                style: {
+                                  height: "40px",
+                                  width: "40px",
+                                  marginRight: "14px",
+                                },
+                                alt: "logo",
+                              })
+                            ),
+                            React.createElement(
+                              Zt,
+                              { sx: k.botMessageStyle },
+                              React.createElement(
+                                Cr,
+                                {
+                                  color: "#fff",
+                                  fontSize: o ? "18px" : "14px",
+                                },
+                                g
                               )
-                            : React.createElement(
-                                Zt,
-                                { sx: k.userMessageStyle },
-                                React.createElement(
-                                  Cr,
-                                  {
-                                    sx: k.userMessageTextStyle,
-                                    fontSize: o ? "18px" : "14px",
-                                  },
-                                  e.message
-                                )
-                              );
-                        }),
-                    g.length > 0 && "botMessage" !== n.at(-1).type
-                      ? React.createElement(
-                          Zt,
-                          {
-                            display: "flex",
-                            alignItems: "center",
-                            maxWidth: o ? "80%" : "100%",
-                          },
+                            )
+                          )
+                        : null,
+                      p &&
+                        React.createElement(
+                          "div",
+                          { className: "iconRotate" },
                           React.createElement(
                             Zt,
-                            null,
+                            { display: "flex", alignItems: "center" },
                             React.createElement("img", {
                               src: null != a && a.avatar ? a.avatar : Qi,
-                              style: {
-                                height: "40px",
-                                width: "40px",
-                                marginRight: "14px",
-                              },
                               alt: "logo",
-                            })
-                          ),
-                          React.createElement(
-                            Zt,
-                            { sx: k.botMessageStyle },
-                            React.createElement(
-                              Cr,
-                              { color: "#fff", fontSize: o ? "18px" : "14px" },
-                              g
-                            )
-                          )
-                        )
-                      : null,
-                    p &&
-                      React.createElement(
-                        "div",
-                        { className: "iconRotate" },
-                        React.createElement(
-                          Zt,
-                          { display: "flex", alignItems: "center" },
-                          React.createElement("img", {
-                            src: null != a && a.avatar ? a.avatar : Qi,
-                            alt: "logo",
-                            width: "40px",
-                            height: "40px",
-                          }),
-                          " ",
-                          p &&
-                            React.createElement(Br, {
-                              sx: {
-                                bgcolor: "grey.900",
-                                marginLeft: "10px",
-                                borderRadius: "20px",
-                                borderBottomLeftRadius: "1px",
-                              },
-                              variant: "rectangular",
-                              width: 600,
-                              height: 75,
-                            })
-                        )
-                      ),
-                    React.createElement(Zt, { ref: S }),
-                    React.createElement(Ni, {
-                      fullWidth: !0,
-                      style: El.root,
-                      placeholder: "Ask me anything...",
-                      value: c,
-                      onChange: function (e) {
-                        return (function (e) {
-                          d(e.target.value);
-                        })(e);
-                      },
-                      disabled: "userMessage" === n.at(-1).type,
-                      onKeyDown: function (e) {
-                        "Enter" !== e.key ||
-                          e.shiftKey ||
-                          (e.preventDefault(), C(), E());
-                      },
-                      InputProps: {
-                        style: El.input,
-                        endAdornment: React.createElement(
-                          Zt,
-                          null,
-                          React.createElement(
-                            _i,
-                            { position: "end" },
-                            React.createElement(
-                              Gi,
-                              { style: El.icon, onClick: E },
-                              React.createElement(Yi.Z, null)
-                            )
+                              width: "40px",
+                              height: "40px",
+                            }),
+                            " ",
+                            p &&
+                              React.createElement(Br, {
+                                sx: {
+                                  bgcolor: "grey.900",
+                                  marginLeft: "10px",
+                                  borderRadius: "20px",
+                                  borderBottomLeftRadius: "1px",
+                                },
+                                variant: "rectangular",
+                                width: 600,
+                                height: 75,
+                              })
                           )
                         ),
-                      },
-                    })
-                  )
+                      React.createElement(Zt, { ref: S }),
+                      React.createElement(Ni, {
+                        fullWidth: !0,
+                        style: El.root,
+                        placeholder: "Ask me anything...",
+                        value: c,
+                        onChange: function (e) {
+                          return (function (e) {
+                            d(e.target.value);
+                          })(e);
+                        },
+                        disabled: "userMessage" === n.at(-1).type,
+                        onKeyDown: function (e) {
+                          "Enter" !== e.key ||
+                            e.shiftKey ||
+                            (e.preventDefault(), C(), E());
+                        },
+                        InputProps: {
+                          style: El.input,
+                          endAdornment: React.createElement(
+                            Zt,
+                            null,
+                            React.createElement(
+                              _i,
+                              { position: "end" },
+                              React.createElement(
+                                Gi,
+                                { style: El.icon, onClick: E },
+                                React.createElement(Yi.Z, null)
+                              )
+                            )
+                          ),
+                        },
+                      })
+                    )
+                  : React.createElement(
+                      Zt,
+                      { textAlign: "center" },
+                      React.createElement(
+                        Zt,
+                        null,
+                        a.isName &&
+                          React.createElement(Ni, {
+                            style: {
+                              background: "#1f2029",
+                              border: "1px solid rgba(255, 191, 15, 0.25)",
+                            },
+                            placeholder: "Name",
+                            sx: { mt: 2 },
+                            onChange: function (e) {
+                              return R(e.target.value, "name");
+                            },
+                          })
+                      ),
+                      React.createElement(
+                        Zt,
+                        null,
+                        a.isEmail &&
+                          React.createElement(Ni, {
+                            style: {
+                              background: "#1f2029",
+                              border: "1px solid rgba(255, 191, 15, 0.25)",
+                            },
+                            placeholder: "Email",
+                            sx: { mt: 2 },
+                            onChange: function (e) {
+                              return R(e.target.value, "email");
+                            },
+                          })
+                      ),
+                      React.createElement(
+                        Zt,
+                        null,
+                        a.isPhone &&
+                          React.createElement(Ni, {
+                            style: {
+                              background: "#1f2029",
+                              border: "1px solid rgba(255, 191, 15, 0.25)",
+                            },
+                            placeholder: "Phone",
+                            sx: { mt: 2 },
+                            onChange: function (e) {
+                              return R(e.target.value, "phone");
+                            },
+                          })
+                      ),
+                      React.createElement(
+                        Zt,
+                        null,
+                        React.createElement(
+                          Gi,
+                          {
+                            sx: { mt: 2 },
+                            variant: "contained",
+                            onClick: function () {
+                              return P();
+                            },
+                          },
+                          "Save"
+                        )
+                      )
+                    )
+              )
             );
           };
         function Rl(e) {
@@ -26909,6 +26931,7 @@
                                 {
                                   startAt: n,
                                   chat: o,
+                                  endAt: new Date(),
                                   userIp: v.userIp,
                                   pageLoadedAt: v.pageLoadedAt,
                                   conversationId:
