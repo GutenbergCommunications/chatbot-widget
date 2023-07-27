@@ -25745,7 +25745,8 @@
                                     ]),
                                   },
                                   i.type,
-                                  i.chatbotId
+                                  i.chatbotId,
+                                  i.userId
                                 )
                               );
                             case 18:
@@ -25809,7 +25810,8 @@
                                   b
                                 ),
                                 i.type,
-                                i.chatbotId
+                                i.chatbotId,
+                                i.userId
                               )
                             );
                           case 3:
@@ -26956,7 +26958,8 @@
                                       : t.getItem("conversationId"),
                                 },
                                 R.type,
-                                R.chatbotId
+                                R.chatbotId,
+                                R.userId
                               )
                             );
                           case 8:
@@ -27016,7 +27019,8 @@
                                   conversationId: D,
                                 },
                                 R.type,
-                                R.chatbotId
+                                R.chatbotId,
+                                R.userId
                               )
                             );
                           case 9:
@@ -27052,7 +27056,8 @@
                                   conversationId: D,
                                 },
                                 R.type,
-                                R.chatbotId
+                                R.chatbotId,
+                                R.userId
                               )
                             );
                           case 17:
@@ -27071,7 +27076,8 @@
                                   conversationId: D,
                                 },
                                 R.type,
-                                R.chatbotId
+                                R.chatbotId,
+                                R.userId
                               )
                             );
                           case 21:
