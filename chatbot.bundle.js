@@ -16251,20 +16251,24 @@
                   switch ((e.prev = e.next)) {
                     case 0:
                       return (
-                        console.log(o),
-                        (e.next = 3),
+                        (e.next = 2),
                         Fe.post(
-                          ""
-                            .concat(He, "/chat/save?type=")
-                            .concat(n, "&botId=")
-                            .concat(r, "&userId=")
-                            .concat(o),
+                          o
+                            ? ""
+                                .concat(He, "/chat/save?type=")
+                                .concat(n, "&botId=")
+                                .concat(r, "&userId=")
+                                .concat(o)
+                            : ""
+                                .concat(He, "/chat/save?type=")
+                                .concat(n, "&botId=")
+                                .concat(r),
                           De({}, t)
                         )
                       );
-                    case 3:
+                    case 2:
                       return (a = e.sent), e.abrupt("return", a.data);
-                    case 5:
+                    case 4:
                     case "end":
                       return e.stop();
                   }
@@ -26912,12 +26916,11 @@
                 t = document.getElementById("gutenbergChatWidget"),
                 n = null == t ? void 0 : t.getAttribute("botType"),
                 r = null == t ? void 0 : t.getAttribute("chatbotId"),
-                o = null == t ? void 0 : t.getAttribute("userId");
-              console.log(o);
-              var a =
-                null === (e = window) || void 0 === e
-                  ? void 0
-                  : e.location.hostname;
+                o = null == t ? void 0 : t.getAttribute("userId"),
+                a =
+                  null === (e = window) || void 0 === e
+                    ? void 0
+                    : e.location.hostname;
               P({ type: n, chatbotId: r, userId: o, domain: a }),
                 K(n, r, o),
                 G(n, r, a);
